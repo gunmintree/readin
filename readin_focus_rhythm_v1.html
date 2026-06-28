@@ -8,8 +8,11 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#0a1628">
 <title>리드인 고척점 전용 페이지</title>
+<link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="favicon.ico" sizes="any">
-<link rel="apple-touch-icon" href="logo.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <style>
   /* =============================================
      CSS 변수 / 디자인 토큰
@@ -185,6 +188,7 @@
     align-items: center;
     gap: 16px;
     transition: transform 0.12s, background 0.12s, border-color 0.12s;
+    text-decoration: none;
   }
   .mode-btn:active {
     transform: scale(0.98);
@@ -629,6 +633,14 @@
       <div class="menu-title">READ<span>IN</span></div>
       <div class="menu-sub">FOCUS RHYTHM</div>
     </div>
+
+    <a class="mode-btn" href="https://www.readin.co.kr" target="_blank" rel="noopener">
+      <div class="mode-icon">↗</div>
+      <div>
+        <div class="mode-label">리드인 홈페이지 바로가기</div>
+        <div class="mode-desc">공식 홈페이지를 새 창으로 엽니다.</div>
+      </div>
+    </a>
 
     <button class="mode-btn" onclick="openMetronomeMenu()">
       <div class="mode-icon">♪</div>
@@ -1738,6 +1750,10 @@ window.addEventListener('DOMContentLoaded', () => {
   document.head.appendChild(link);
 
   initApp();
+
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js').catch(() => {});
+  }
 
   // tok.mp3 로드 시도 (HTML과 같은 폴더에 있으면 자동 적용)
   // tryLoadWav();
