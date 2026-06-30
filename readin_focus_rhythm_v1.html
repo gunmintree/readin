@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
@@ -873,9 +873,9 @@ const STATE = {
    레벨별 범위
 ============================================= */
 function getLevelRange(level) {
-  if (level === 'random') return [10, 120];
+  if (level === 'random') return [10, 130];
   const min = level * 10;          // 1→10, 2→20 ...
-  const max = min + 10;
+  const max = level === 10 ? 130 : min + 10;
   return [min, max];
 }
 
